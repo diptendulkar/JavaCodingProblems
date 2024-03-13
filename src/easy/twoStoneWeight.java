@@ -29,7 +29,7 @@ Constraints:
 
 1 <= stones.length <= 30
 1 <= stones[i] <= 1000*/
-
+//https://leetcode.com/problems/last-stone-weight/description/
 
 public class twoStoneWeight {
     public static void main(String[] args) {
