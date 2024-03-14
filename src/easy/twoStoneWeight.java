@@ -44,16 +44,8 @@ public class twoStoneWeight {
 
         System.out.println(Arrays.toString(stones));
         for(int i=stones.length-1 ; i>=0;i--){
-
-            if(stones[stones.length-1] >= stones[stones.length-2]){
-
-                stones[stones.length-2] = stones[stones.length-1] - stones[stones.length-2];
-                stones[stones.length-1] =0;
-            }else{
-
-                stones[stones.length-2] = stones[stones.length-2] - stones[stones.length-1];
-                stones[stones.length-1] =0;
-            }
+            stones[stones.length-2] = Math.abs(stones[stones.length-2] - stones[stones.length-1]);
+            stones[stones.length-1] =0;
             Arrays.sort(stones);
             System.out.println(Arrays.toString(stones));
         }
