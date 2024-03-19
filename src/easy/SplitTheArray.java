@@ -1,4 +1,7 @@
 package easy;
+
+import java.util.Arrays;
+
 /*You are given an integer array nums of even length. You have to split the array into two parts nums1 and nums2 such that:
 nums1.length == nums2.length == nums.length / 2.
 nums1 should contain distinct elements.
@@ -21,18 +24,19 @@ nums.length % 2 == 0
 1 <= nums[i] <= 100*/
 public class SplitTheArray {
     public static void main(String[] args) {
-        int[] nums ={1,1,1,1};
+        int[] nums ={1,1,2,2,3,4};
         System.out.println(isPossibleToSplit(nums));
     }
 
     public static  boolean isPossibleToSplit(int[] nums) {
         int[] d = new int[101];
-        System.out.println(d.toString());
+        System.out.println(Arrays.toString(d));
         for(int i : nums){
 
             if(d[i]==2) return false;
             d[i]++;
         }
+        System.out.println(Arrays.toString(d));
         return true;
     }
 }
