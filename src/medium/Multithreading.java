@@ -18,7 +18,8 @@ public class Multithreading {
     private static void incrementCounter(int tNumber) {
         while (counter.get() <= 10) {
             if (counter.get() % 3 == tNumber - 1) { // Check thread's turn
-                System.out.println("T" + tNumber + " => " + counter.get());
+                if(counter.get() <= 10)
+                    System.out.println("T" + tNumber + " => " + counter.get());
                 counter.getAndIncrement();
 
             }
