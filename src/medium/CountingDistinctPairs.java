@@ -28,7 +28,10 @@ public class CountingDistinctPairs {
                 count++;
 
 
-        return count;
+       // return count;
+
+        //using stream
+        return (int) set.stream().filter(b-> set.contains((b-k))).count();
 
     }
 }
