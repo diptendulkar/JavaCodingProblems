@@ -10,6 +10,7 @@ public class Sorting {
         hashMapSorting();
     }
 
+    //WAP to sort a HasMap considering time complexity
     public static void hashMapSorting() {
 
         Map<Integer, String> map = new HashMap<>();
@@ -25,8 +26,7 @@ public class Sorting {
 //        which are commonly used in Java Streams, have this complexity.
 
         map.entrySet().stream()
-                .sorted(
-                        (s1, s2) -> String.CASE_INSENSITIVE_ORDER.compare(s1.getValue(), s2.getValue()))
+                .sorted((s1, s2) -> String.CASE_INSENSITIVE_ORDER.compare(s1.getValue(), s2.getValue()))
                 .forEach(System.out::println);
 
     }
