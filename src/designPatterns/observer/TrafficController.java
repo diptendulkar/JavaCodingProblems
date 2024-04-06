@@ -9,6 +9,9 @@ public class TrafficController implements Observer {
         observable.registerObserver(this);
     }
 
+     void unregister(){
+        observable.unregisterObserver(this);
+    }
 
     @Override
     public void update(Observable observable) {

@@ -9,6 +9,8 @@ public class TrafficDemoMain {
         TraficSignal akshayNagar = new TraficSignal("Akshay Nagar");
         TrafficController akshayNagartrafficController1 = new TrafficController(akshayNagar);
 
+        trafficController1.unregister(); // unregister MG road Signal
+
         mgroad.setSignalColor("RED");
         akshayNagar.setSignalColor("GREEN");
 
