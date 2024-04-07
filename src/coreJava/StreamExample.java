@@ -27,6 +27,7 @@ public class StreamExample {
         characters.forEach(System.out::println); // This will print each character on a new line
 
 
+
     }
 
 }
