@@ -1,5 +1,6 @@
 package coreJava;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,10 +25,16 @@ public class StreamExample {
 
         // remove duplicate char using distinct method
         characters =   characters.stream().distinct().collect(Collectors.toList());
-        characters.forEach(System.out::println); // This will print each character on a new line
+      //  characters.forEach(System.out::println); // This will print each character on a new line
 
 
+        // JOIN TWO List using Stream
 
+        List<String> list1 = Stream.of("Dip", "Das").collect(Collectors.toList());
+        List<String> list2 = Stream.of("Diptendu", "Das").collect(Collectors.toList());
+
+        List<String> mergeList = Stream.concat(list1.stream(),list2.stream()).collect(Collectors.toList());
+        mergeList.stream().forEach(System.out::println);
     }
 
 }
