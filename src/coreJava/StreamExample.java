@@ -1,9 +1,6 @@
 package coreJava;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -49,9 +46,18 @@ public class StreamExample {
                 .map(e-> e.getKey())
                 .collect(Collectors.toList());
 
-        duplicates.stream().forEach(System.out::println);
+      //  duplicates.stream().forEach(System.out::println);
 
 
+        // **** SORT A HASHMAP ****//
+
+        Map<Integer,String> map = new HashMap<>();
+        map.put(3,"cccc");
+        map.put(2,"bbbbb");
+        map.put(4,"dddd");
+        map.put(5,"aaaa");
+
+        map.entrySet().stream().sorted((e1,e2) -> String.CASE_INSENSITIVE_ORDER.compare( e1.getValue() , e2.getValue() )).forEach(System.out::println);
     }
 
 }
