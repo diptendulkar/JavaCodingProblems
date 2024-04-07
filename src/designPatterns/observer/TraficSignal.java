@@ -7,6 +7,7 @@ public class TraficSignal implements Observable {
 
     private List<Observer> observerList;
     private String signalColor;
+    private  String signalName;
 
     public String getSignalName() {
         return signalName;
@@ -16,7 +17,7 @@ public class TraficSignal implements Observable {
         this.signalName = signalName;
     }
 
-    private  String signalName;
+
 
 
 
