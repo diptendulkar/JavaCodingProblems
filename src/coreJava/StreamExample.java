@@ -46,7 +46,9 @@ public class StreamExample {
                 .map(e-> e.getKey())
                 .collect(Collectors.toList());
 
-      //  duplicates.stream().forEach(System.out::println);
+        List<String> ll = Collections.unmodifiableList(duplicates);
+//        ll.add("ssss");
+        ll.stream().forEach(System.out::println);
 
 
         // **** SORT A HASHMAP ****//
