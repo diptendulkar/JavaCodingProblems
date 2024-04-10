@@ -1,4 +1,4 @@
-package medium;
+package coreJava.multithreading;
 /*
 Use 3 Thread to print in below sequence up to 10
 T1 = 1,4,7,10
