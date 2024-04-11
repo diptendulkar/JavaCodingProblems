@@ -1,7 +1,7 @@
 package coreJava.multithreading.ThreadPool;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
+
 
 public class ThreadPoolExample {
 
@@ -16,18 +16,27 @@ public class ThreadPoolExample {
                 public void run() {
 
                      try {
-                        Thread.sleep(2000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                     System.out.println("Executing Task : " + taskId + " by " + Thread.currentThread().getName());
 
-
-
                 }
             };
             // Submit the task to the executor service. This task will be executed by one of the pooled threads.
-            executor.submit(task);
+          //  executor.execute(task); // execute method return nothing
+           Future future =  executor.submit(task); // returns Future Object
+            System.out.println(future.isDone()); // return false  ->  task is not completed
+
+            try {
+                future.get(); // awaits for task to complete  int this block
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(future.isDone() + "\n"); // return true  -> task is completed
         }
 
         // Initiates an orderly shutdown in which previously submitted tasks are executed, but no new tasks will be accepted.
