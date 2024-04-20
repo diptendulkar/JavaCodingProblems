@@ -20,8 +20,8 @@ Explanation: The smallest positive integer 1 is missing.*/
 public class firstMissingPositive {
     public static void main(String[] args) {
 
-       int[] nums = {7,8,9,11,12};
-        System.out.println(firstMissingPositive(nums));
+       int[] nums = {3,4,2,1};
+        System.out.println(firstMissingPositive2(nums));
     }
 
     public static int firstMissingPositive(int[] nums) {
@@ -37,4 +37,24 @@ public class firstMissingPositive {
         }
         return nums.length +1;
     }
-}
+
+    public static int firstMissingPositive2(int[] nums) {
+        int n = nums.length;
+        boolean[] seen = new boolean[n+1];
+
+
+        for(int num : nums){
+            if(num > 0 && num<= n){
+                seen[num] = true;
+            }
+        }
+
+        for(int i = 1; i<= n; i++){
+            if(!seen[i]){
+                return i;
+            }
+        }
+        return n+1;
+    }
+
+    }
