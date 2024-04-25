@@ -90,6 +90,12 @@ public class Employee {
 
    //Write a program to print the names of all departments in the organization.
         getDepartmentName(employeeList);
+
+    //Find the average age of Male and Female Employees.
+        getGender(employeeList);
+
+    //Get the Names of employees who joined after 2015.
+        getNameOfEmp(employeeList);
     }
 
     public static void getCountOfMaleFemale(List<Employee> employeeList) {
@@ -111,5 +117,20 @@ public class Employee {
 
         List<String> depttList = employeeList.stream().map(Employee::getDepartment).distinct().collect(Collectors.toList());
         System.out.println(depttList);
+    }
+
+    public static void getGender(List<Employee> employeeList) {
+        // average gender age
+        Map<Object, Double> genderAge = employeeList.stream().collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingLong(Employee::getAge)));
+        System.out.println(genderAge);
+    }
+
+    public static void getNameOfEmp(List<Employee> employeeList) {
+        // joined after 2015
+
+        employeeList.stream().filter(employee -> employee.getYearOfJoining() > 2015)
+                //.map(Employee::getName)
+                .forEach(e -> System.out.println(e.getName() + " = " + e.getYearOfJoining()));
+
     }
 }
