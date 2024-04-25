@@ -87,6 +87,9 @@ public class Employee {
 
    //Find out the count of male and female employees present in the organization?
         getCountOfMaleFemale(employeeList);
+
+   //Write a program to print the names of all departments in the organization.
+        getDepartmentName(employeeList);
     }
 
     public static void getCountOfMaleFemale(List<Employee> employeeList) {
@@ -102,5 +105,11 @@ public class Employee {
                 Employee::getGender, Collectors.counting() ));
         System.out.println(genderCount);
 
+    }
+
+    public static void getDepartmentName(List<Employee> employeeList){
+
+        List<String> depttList = employeeList.stream().map(Employee::getDepartment).distinct().collect(Collectors.toList());
+        System.out.println(depttList);
     }
 }
