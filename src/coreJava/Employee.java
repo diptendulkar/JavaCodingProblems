@@ -1,8 +1,6 @@
 package coreJava;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Employee {
@@ -99,6 +97,13 @@ public class Employee {
 
     // Count the number of employees in each department.
         countByDept(employeeList);
+
+    //6. Find out the average salary of each department.
+        avgSalary(employeeList);
+
+    //7. Find out the oldest employee, his/her age and department?
+        oldestEmp(employeeList);
+
     }
 
     public static void getCountOfMaleFemale(List<Employee> employeeList) {
@@ -140,5 +145,19 @@ public class Employee {
     public static void countByDept(List<Employee> employeeList) {
         Map<String, Long> dptt = employeeList.stream().collect(Collectors.groupingBy(employee -> employee.department, Collectors.counting()));
         System.out.println(dptt);
+    }
+
+    public static void avgSalary(List<Employee> employeeList) {
+        Map<String, Double> avgSal = employeeList.stream()
+                .collect(Collectors.groupingBy(employee -> employee.department, Collectors.averagingDouble(Employee::getSalary)));
+
+        System.out.println(avgSal);
+    }
+
+    public static void oldestEmp(List<Employee> employeeList) {
+
+        Optional<Employee> employee = employeeList.stream().max(Comparator.comparing(Employee::getAge));
+        System.out.println(employee);
+
     }
 }
