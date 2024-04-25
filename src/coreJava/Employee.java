@@ -104,6 +104,12 @@ public class Employee {
     //7. Find out the oldest employee, his/her age and department?
         oldestEmp(employeeList);
 
+    //8. Find out the average and total salary of the organization.
+        getEmpSalary(employeeList);
+
+    //9. List down the employees of each department.
+        listDownDept(employeeList);
+
     }
 
     public static void getCountOfMaleFemale(List<Employee> employeeList) {
@@ -158,6 +164,30 @@ public class Employee {
 
         Optional<Employee> employee = employeeList.stream().max(Comparator.comparing(Employee::getAge));
         System.out.println(employee);
+
+    }
+    public static void getEmpSalary(List<Employee> employeeList) {
+        //Find out the average and total salary of the organization.
+
+        Double totalSal = employeeList.stream().collect(Collectors.summingDouble(Employee::getSalary));
+        Double avgSal = employeeList.stream().collect(Collectors.averagingDouble(Employee::getSalary));
+        System.out.println(totalSal);
+        System.out.println(avgSal);
+
+    }
+
+
+    public static void listDownDept(List<Employee> employeeList) {
+        //9. List down the employees of each department.
+
+        Map<String, List<String>> empList = employeeList.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment,
+                        Collectors.mapping(Employee::getName, Collectors.toList())));
+        System.out.println(empList);
+        System.out.println(empList);
+
+
+
 
     }
 }
