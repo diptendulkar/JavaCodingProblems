@@ -26,6 +26,7 @@ public class ProductofArrayExceptSelf {
             result[i] = prefixProduct;
             prefixProduct *= nums[i];
         }
+        System.out.println(result.toString());
         for(int i = numsLength-1; i >= 0; i--) {
             result[i] *= suffixProduct;
             suffixProduct *= nums[i];
@@ -34,6 +35,6 @@ public class ProductofArrayExceptSelf {
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(product(new int[] {-1,1,0,-3,3})));
+        System.out.println(Arrays.toString(product(new int[] {1,2,3,4})));
     }
 }
