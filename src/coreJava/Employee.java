@@ -96,6 +96,9 @@ public class Employee {
 
     //Get the Names of employees who joined after 2015.
         getNameOfEmp(employeeList);
+
+    // Count the number of employees in each department.
+        countByDept(employeeList);
     }
 
     public static void getCountOfMaleFemale(List<Employee> employeeList) {
@@ -132,5 +135,10 @@ public class Employee {
                 //.map(Employee::getName)
                 .forEach(e -> System.out.println(e.getName() + " = " + e.getYearOfJoining()));
 
+    }
+
+    public static void countByDept(List<Employee> employeeList) {
+        Map<String, Long> dptt = employeeList.stream().collect(Collectors.groupingBy(employee -> employee.department, Collectors.counting()));
+        System.out.println(dptt);
     }
 }
