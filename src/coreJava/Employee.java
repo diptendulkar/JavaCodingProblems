@@ -12,8 +12,7 @@ public class Employee {
     int yearOfJoining;
     double salary;
 
-    public Employee(int id, String name, int age, String gender, String department, int yearOfJoining, double salary)
-    {
+    public Employee(int id, String name, int age, String gender, String department, int yearOfJoining, double salary) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -22,44 +21,44 @@ public class Employee {
         this.yearOfJoining = yearOfJoining;
         this.salary = salary;
     }
-    public int getId()
-    {
+
+    public int getId() {
         return id;
     }
-    public String getName()
-    {
+
+    public String getName() {
         return name;
     }
-    public int getAge()
-    {
+
+    public int getAge() {
         return age;
     }
-    public String getGender()
-    {
+
+    public String getGender() {
         return gender;
     }
-    public String getDepartment()
-    {
+
+    public String getDepartment() {
         return department;
     }
-    public int getYearOfJoining()
-    {
+
+    public int getYearOfJoining() {
         return yearOfJoining;
     }
-    public double getSalary()
-    {
+
+    public double getSalary() {
         return salary;
     }
+
     @Override
-    public String toString()
-    {
-        return "Id : "+id
-                +", Name : "+name
-                +", age : "+age
-                +", Gender : "+gender
-                +", Department : "+department
-                +", Year Of Joining : "+yearOfJoining
-                +", Salary : "+salary;
+    public String toString() {
+        return "Id : " + id
+                + ", Name : " + name
+                + ", age : " + age
+                + ", Gender : " + gender
+                + ", Department : " + department
+                + ", Year Of Joining : " + yearOfJoining
+                + ", Salary : " + salary;
     }
 
     public static void main(String[] args) {
@@ -83,33 +82,35 @@ public class Employee {
         employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
         employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-   //Find out the count of male and female employees present in the organization?
+        //Find out the count of male and female employees present in the organization?
         getCountOfMaleFemale(employeeList);
 
-   //Write a program to print the names of all departments in the organization.
+        //Write a program to print the names of all departments in the organization.
         getDepartmentName(employeeList);
 
-    //Find the average age of Male and Female Employees.
+        //Find the average age of Male and Female Employees.
         getGender(employeeList);
 
-    //Get the Names of employees who joined after 2015.
+        //Get the Names of employees who joined after 2015.
         getNameOfEmp(employeeList);
 
-    // Count the number of employees in each department.
+        // Count the number of employees in each department.
         countByDept(employeeList);
 
-    //6. Find out the average salary of each department.
+        //6. Find out the average salary of each department.
         avgSalary(employeeList);
 
-    //7. Find out the oldest employee, his/her age and department?
+        //7. Find out the oldest employee, his/her age and department?
         oldestEmp(employeeList);
 
-    //8. Find out the average and total salary of the organization.
+        //8. Find out the average and total salary of the organization.
         getEmpSalary(employeeList);
 
-    //9. List down the employees of each department.
+        //9. List down the employees of each department.
         listDownDept(employeeList);
 
+        //Find out the highest experienced employees in the organization
+        seniorEmp(employeeList);
     }
 
     public static void getCountOfMaleFemale(List<Employee> employeeList) {
@@ -121,13 +122,13 @@ public class Employee {
 
         // OR
 
-        Map<String,Long> genderCount = employeeList.stream().collect(Collectors.groupingBy(
-                Employee::getGender, Collectors.counting() ));
+        Map<String, Long> genderCount = employeeList.stream().collect(Collectors.groupingBy(
+                Employee::getGender, Collectors.counting()));
         System.out.println(genderCount);
 
     }
 
-    public static void getDepartmentName(List<Employee> employeeList){
+    public static void getDepartmentName(List<Employee> employeeList) {
 
         List<String> depttList = employeeList.stream().map(Employee::getDepartment).distinct().collect(Collectors.toList());
         System.out.println(depttList);
@@ -166,6 +167,7 @@ public class Employee {
         System.out.println(employee);
 
     }
+
     public static void getEmpSalary(List<Employee> employeeList) {
         //Find out the average and total salary of the organization.
 
@@ -186,8 +188,19 @@ public class Employee {
         System.out.println(empList);
         System.out.println(empList);
 
+    }
 
+    public static void seniorEmp(List<Employee> employeeList) {
+        Optional<Employee> seniorEmp = employeeList.stream()
+                .sorted(Comparator
+                        .comparingInt(Employee::getYearOfJoining)).findFirst();
 
+        Employee seniorMostEmployee = seniorEmp.get();
 
+        System.out.println("Senior Most Employee Details :");
+        System.out.println("----------------------------");
+        System.out.println("ID : " + seniorMostEmployee.getId());
+        System.out.println("Name : " + seniorMostEmployee.getName());
+        System.out.println("Age : " + seniorMostEmployee.getAge());
     }
 }
