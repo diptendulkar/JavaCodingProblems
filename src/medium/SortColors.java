@@ -13,26 +13,26 @@ https://leetcode.com/problems/sort-colors/description
 */
 public class SortColors {
     public static void main(String[] args) {
-    int[] nums = {2,0,2,1,1,0};
+        int[] nums = {2, 0, 2, 1, 1, 0};
         System.out.println(Arrays.toString(nums));
-    sortColors(nums);
+        sortColors(nums);
+        System.out.println(Arrays.toString(nums));
     }
 
-//    The provided code implements a sorting algorithm called the "Dutch National Flag" algorithm
+    //    The provided code implements a sorting algorithm called the "Dutch National Flag" algorithm
 //    to sort an array containing elements with values 0, 1, and 2.
 //    Here's a breakdown of the code and some improvements:
     public static void sortColors(int[] nums) {
 
-        int left=0, right = nums.length -1, i=0;
+        int left = 0, right = nums.length - 1, i = 0;
 
-        while(i <= right){
-            if(nums[i] == 2){
+        while (i <= right) {
+            if (nums[i] == 2) {
                 nums[i] = nums[right];
                 nums[right] = 2;
                 right--;
-            }
-            else {
-                if( nums[i] == 0){
+            } else {
+                if (nums[i] == 0) {
                     nums[i] = nums[left];
                     nums[left] = 0;
                     left++;
@@ -40,10 +40,10 @@ public class SortColors {
                 i++;
             }
 
-            System.out.println(Arrays.toString(nums));
+            //   System.out.println(Arrays.toString(nums));
 
         }
-        System.out.println(Arrays.toString(nums));
+        //  System.out.println(Arrays.toString(nums));
 
     }
 }
