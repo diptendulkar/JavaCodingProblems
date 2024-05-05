@@ -7,38 +7,6 @@ import java.util.Set;
 
 public class ListExample {
 
-    public static class Contact {
-        String name;
-        String email;
-        String address;
-        long phoneNo;
-
-        public Contact(String name, String email, String address, long phoneNo) {
-            this.name = name;
-            this.email = email;
-            this.address = address;
-            this.phoneNo = phoneNo;
-        }
-
-
-        @Override
-        public boolean equals(Object obj) {
-
-            Contact c = (Contact) obj;
-             if (this.phoneNo == c.phoneNo)
-                return true;
-            if (this.email.equals(c.email))
-                return true;
-
-            return false;
-        }
-
-        @Override
-        public int hashCode() {
-            return this.email.hashCode();
-        }
-    }
-
     public static void main(String[] args) throws Exception {
 
         Set<Contact> contacts = new HashSet<>();
@@ -49,11 +17,8 @@ public class ListExample {
         contacts.add(new Contact("A4", "ad@gmail.com", "bangalore4", 4197253424l));
         contacts.add(new Contact("A5", "ae@gmail.com", "bangalore5", 5197253424l));
 
-
-
-
         Contact c1 = new Contact("A3", "ad@gmail.com", "bangalore4", 4197253424l);
-        Contact c2 = new Contact("A6", "ae@gmail.com", "bangalore4", 6197253424l);
+        Contact c2 = new Contact("A6", "a6@gmail.com", "bangalore4", 6197253424l);
 
         System.out.println(c1.hashCode());
         System.out.println(c2.hashCode());
@@ -63,7 +28,6 @@ public class ListExample {
         print(contacts);
 
         // addRecord(c1, contacts);
-
 
     }
 
@@ -81,8 +45,6 @@ public class ListExample {
         }
         if (!duplicateCheck)
             contacts.add(c1);
-
-
     }
 
     public static void print(Set<Contact> contacts) {
@@ -92,6 +54,38 @@ public class ListExample {
     }
 
 
+}
+
+class Contact {
+    String name;
+    String email;
+    String address;
+    long phoneNo;
+
+    public Contact(String name, String email, String address, long phoneNo) {
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.phoneNo = phoneNo;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+
+        Contact c = (Contact) obj;
+        if (this.phoneNo == c.phoneNo)
+            return true;
+        if (this.email.equals(c.email))
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.email.hashCode();
+    }
 }
 
 
