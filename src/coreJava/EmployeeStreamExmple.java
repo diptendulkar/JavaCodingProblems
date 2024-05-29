@@ -83,34 +83,36 @@ public class EmployeeStreamExmple {
         employeeList.add(new EmployeeStreamExmple(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
         //Find out the count of male and female employees present in the organization?
-        getCountOfMaleFemale(employeeList);
+//        getCountOfMaleFemale(employeeList);
+//
+//        //Write a program to print the names of all departments in the organization.
+//        getDepartmentName(employeeList);
+//
+//        //Find the average age of Male and Female Employees.
+//        getGender(employeeList);
+//
+//        //Get the Names of employees who joined after 2015.
+//        getNameOfEmp(employeeList);
+//
+//        // Count the number of employees in each department.
+//        countByDept(employeeList);
+//
+//        //6. Find out the average salary of each department.
+//        avgSalary(employeeList);
+//
+//        //7. Find out the oldest employee, his/her age and department?
+//        oldestEmp(employeeList);
+//
+//        //8. Find out the average and total salary of the organization.
+//        getEmpSalary(employeeList);
+//
+//        //9. List down the employees of each department.
+//        listDownDept(employeeList);
+//
+//        //Find out the highest experienced employees in the organization
+//        seniorEmp(employeeList);
 
-        //Write a program to print the names of all departments in the organization.
-        getDepartmentName(employeeList);
-
-        //Find the average age of Male and Female Employees.
-        getGender(employeeList);
-
-        //Get the Names of employees who joined after 2015.
-        getNameOfEmp(employeeList);
-
-        // Count the number of employees in each department.
-        countByDept(employeeList);
-
-        //6. Find out the average salary of each department.
-        avgSalary(employeeList);
-
-        //7. Find out the oldest employee, his/her age and department?
-        oldestEmp(employeeList);
-
-        //8. Find out the average and total salary of the organization.
-        getEmpSalary(employeeList);
-
-        //9. List down the employees of each department.
-        listDownDept(employeeList);
-
-        //Find out the highest experienced employees in the organization
-        seniorEmp(employeeList);
+        interviewQuestions(employeeList);
     }
 
     public static void getCountOfMaleFemale(List<EmployeeStreamExmple> employeeList) {
@@ -188,6 +190,8 @@ public class EmployeeStreamExmple {
         System.out.println(empList);
         System.out.println(empList);
 
+        // Map<Integer,List<EmployeeStreamExmple>> deptemployees = employeeList.stream().collect(Collectors.groupingBy(d->d)).entrySet().stream().map(EmployeeStreamExmple::getDepartment).Collect(Collectors.toList());
+
     }
 
     public static void seniorEmp(List<EmployeeStreamExmple> employeeList) {
@@ -202,5 +206,31 @@ public class EmployeeStreamExmple {
         System.out.println("ID : " + seniorMostEmployee.getId());
         System.out.println("Name : " + seniorMostEmployee.getName());
         System.out.println("Age : " + seniorMostEmployee.getAge());
+    }
+
+    public static void interviewQuestions(List<EmployeeStreamExmple> employeeList) {
+
+        // get only employee names whose Salary > 30k
+        List<String> enames = employeeList.stream()
+                .filter(e -> e.getSalary() > 30000)
+                .map(e -> e.getName())
+                .collect(Collectors.toList());
+
+        enames.stream().forEach(System.out::println);
+
+
+        // Department wise employees information
+         Map<String,List<EmployeeStreamExmple>> departmentWiseEmployees = employeeList.stream()
+                 .collect(Collectors.groupingBy(e-> e.getDepartment()));
+
+        departmentWiseEmployees.forEach((department, employees) -> {
+            System.out.println("Department: " + department);
+            System.out.println("--------------------------------");
+            employees.forEach(e ->
+                    System.out.println("Name: " + e.getName() + ", Salary: " + e.getSalary())
+            );
+            System.out.println();
+        });
+
     }
 }
