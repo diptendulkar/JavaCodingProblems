@@ -220,8 +220,8 @@ public class EmployeeStreamExmple {
 
 
         // Department wise employees information
-         Map<String,List<EmployeeStreamExmple>> departmentWiseEmployees = employeeList.stream()
-                 .collect(Collectors.groupingBy(e-> e.getDepartment()));
+        Map<String, List<EmployeeStreamExmple>> departmentWiseEmployees = employeeList.stream()
+                .collect(Collectors.groupingBy(e -> e.getDepartment()));
 
         departmentWiseEmployees.forEach((department, employees) -> {
             System.out.println("Department: " + department);
@@ -232,5 +232,32 @@ public class EmployeeStreamExmple {
             System.out.println();
         });
 
+
+        // Department wise maximum salary
+        Map<String, Optional<EmployeeStreamExmple>> deptemployees = employeeList.stream()
+                .collect(Collectors.groupingBy(e -> e.getDepartment(), Collectors.maxBy(Comparator.comparingDouble(e -> e.getSalary()))));
+
+        deptemployees.forEach((dptt, empOpt) -> {
+            System.out.println(dptt);
+            if (empOpt.isPresent()) {
+                EmployeeStreamExmple emp = empOpt.get();
+                System.out.println(emp.getSalary());
+            }
+        });
+
+        //OR without Optional API
+
+
+        Map<String, Double> deptMaxSalaries = employeeList.stream()
+                .collect(Collectors.groupingBy(
+                        EmployeeStreamExmple::getDepartment,
+                        Collectors.collectingAndThen(
+                                Collectors.maxBy(Comparator.comparingDouble(EmployeeStreamExmple::getSalary)),
+                                optEmp -> optEmp.map(EmployeeStreamExmple::getSalary).orElse(0.0)
+                        )
+                ));
+        deptMaxSalaries.forEach((department, maxSalary) -> {
+            System.out.println("Department: " + department + ", Max Salary: " + maxSalary);
+        });
     }
 }
