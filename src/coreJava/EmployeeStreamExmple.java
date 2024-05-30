@@ -259,5 +259,33 @@ public class EmployeeStreamExmple {
         deptMaxSalaries.forEach((department, maxSalary) -> {
             System.out.println("Department: " + department + ", Max Salary: " + maxSalary);
         });
+
+
+        Optional<EmployeeStreamExmple> tenthHighest = employeeList.stream()
+                .sorted(Comparator.comparingDouble(EmployeeStreamExmple::getSalary).reversed())
+                .skip(9) // Skip the first 9 elements
+                .findFirst(); // Get the 10th element
+
+        if (tenthHighest.isPresent()) {
+            EmployeeStreamExmple employee = tenthHighest.get();
+            System.out.println("10th Highest Salaried Employee:");
+            System.out.println("Name: " + employee.getName());
+            System.out.println("Salary: " + employee.getSalary());
+            System.out.println("Department: " + employee.getDepartment());
+        } else {
+            System.out.println("There are less than 10 employees.");
+        }
+        //find out employess whose salary > 30k and age 20 to 25
+
+     /*   employeeList.stream().filter(e -> {
+            boolean b = e.getSalary() > 10000 && (e.getAge() >= 20 && e.getAge() <= 25);
+            return b;
+        }).forEach(System.out::println);*/
+
+        employeeList.stream()
+                .filter(e -> e.getSalary() > 10000 && e.getAge() >= 20 && e.getAge() <= 25)
+                .forEach(System.out::println);
     }
+
+
 }
