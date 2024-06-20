@@ -68,6 +68,7 @@ public class StreamExample {
         findDuplicateOccurrences();
         nonRepeatingElement();
         uniqueElements();
+        longestString();
     }
 
     public static void secondHighestElement() {
@@ -82,15 +83,15 @@ public class StreamExample {
             System.out.println("Second Highest is not present");
     }
 
-    public static void findDuplicateCount(){
+    public static void findDuplicateCount() {
         int[] nums = {1, 7, 3, 6, 1, 3, 5, 5, 4, 9, 11, 23, 54};
 
-       List<Integer> list = Arrays.stream(nums).boxed().distinct().collect(Collectors.toList());
+        List<Integer> list = Arrays.stream(nums).boxed().distinct().collect(Collectors.toList());
         System.out.println(nums.length - list.size());
 
     }
 
-    public  static  void findDuplicateOccurrences(){
+    public static void findDuplicateOccurrences() {
 
         String str = "Programming";
 
@@ -102,29 +103,29 @@ public class StreamExample {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)); // Collect the results into a map
 
         System.out.println("------- findDuplicateOccurrences  ---------");
-        duplicates.forEach((c,count)-> System.out.println(c + " => " + count));
+        duplicates.forEach((c, count) -> System.out.println(c + " => " + count));
     }
 
-    public static void nonRepeatingElement(){
+    public static void nonRepeatingElement() {
         String str = "swiss";
 
         System.out.println("------- nonRepeatingElement  ---------");
-       Character ch = str.chars() // Convert the string to an IntStream
-               .mapToObj(c -> (char) c) // Convert each int to a char
-               .collect(Collectors.groupingBy(Function.identity(),  Collectors.counting())) // Group by character and count occurrences, preserving insertion order
-               .entrySet().stream() // Convert the map to a stream
-               .filter(entry -> entry.getValue() == 1) // Filter characters that occur only once
-               .map(Map.Entry::getKey) // Get the character from the entry
-               .findFirst() // Find the first character in the stream
-               .orElse(null); // Return null if no non-repeating character is found
+        Character ch = str.chars() // Convert the string to an IntStream
+                .mapToObj(c -> (char) c) // Convert each int to a char
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())) // Group by character and count occurrences, preserving insertion order
+                .entrySet().stream() // Convert the map to a stream
+                .filter(entry -> entry.getValue() == 1) // Filter characters that occur only once
+                .map(Map.Entry::getKey) // Get the character from the entry
+                .findFirst() // Find the first character in the stream
+                .orElse(null); // Return null if no non-repeating character is found
 
 
-        System.out.println("First Non repeating Char is: " +ch);
+        System.out.println("First Non repeating Char is: " + ch);
     }
 
-    public static void uniqueElements(){
+    public static void uniqueElements() {
 //* Write a program to find unique elements in a given string using Java streams.
-        String str ="Programming";
+        String str = "Programming";
 
         System.out.println("------- uniqueElements  ---------");
         String str2 = str.chars() // Convert the string to an IntStream
@@ -139,6 +140,20 @@ public class StreamExample {
 
         System.out.println(str2);
 
+    }
+
+    public static void longestString() {
+//* Write a program to find the longest string in a given array.
+        String[] strings = {"apple", "banana", "pineapple", "cherry", "blueberry"};
+
+        Optional<String> str = Arrays.stream(strings)
+                .max(Comparator.comparing(s -> s.length()));
+
+        if (str.isPresent()) {
+            System.out.println("The longest string is: " + str.get());
+        } else {
+            System.out.println("The array is empty.");
+        }
     }
 
 }
