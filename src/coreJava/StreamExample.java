@@ -67,6 +67,7 @@ public class StreamExample {
         findDuplicateCount();
         findDuplicateOccurrences();
         nonRepeatingElement();
+        uniqueElements();
     }
 
     public static void secondHighestElement() {
@@ -108,13 +109,36 @@ public class StreamExample {
         String str = "swiss";
 
         System.out.println("------- nonRepeatingElement  ---------");
-       Character ch = str.chars().mapToObj(c-> (char)c)
-                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
-                .entrySet().stream()
-                .filter(entry-> entry.getValue()==1)
-                .findFirst().orElse(null).getKey();
+       Character ch = str.chars() // Convert the string to an IntStream
+               .mapToObj(c -> (char) c) // Convert each int to a char
+               .collect(Collectors.groupingBy(Function.identity(),  Collectors.counting())) // Group by character and count occurrences, preserving insertion order
+               .entrySet().stream() // Convert the map to a stream
+               .filter(entry -> entry.getValue() == 1) // Filter characters that occur only once
+               .map(Map.Entry::getKey) // Get the character from the entry
+               .findFirst() // Find the first character in the stream
+               .orElse(null); // Return null if no non-repeating character is found
+
 
         System.out.println("First Non repeating Char is: " +ch);
+    }
+
+    public static void uniqueElements(){
+//* Write a program to find unique elements in a given string using Java streams.
+        String str ="Programming";
+
+        System.out.println("------- uniqueElements  ---------");
+        String str2 = str.chars() // Convert the string to an IntStream
+                .mapToObj(c -> (char) c) // Convert each int to a char
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())) // Group by character and count occurrences, preserving insertion order
+                .entrySet().stream() // Convert the map to a stream
+                .filter(entry -> entry.getValue() == 1) // Filter characters that occur only once
+                .map(Map.Entry::getKey) // Get the character from the entry
+                .map(String::valueOf) // Convert the character to a string
+                .collect(Collectors.joining()); // Collect the unique characters into a string
+
+
+        System.out.println(str2);
+
     }
 
 }
