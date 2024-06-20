@@ -60,6 +60,23 @@ public class StreamExample {
         map.put(5,"aaaa");
 
         map.entrySet().stream().sorted((e1,e2) -> String.CASE_INSENSITIVE_ORDER.compare( e1.getValue() , e2.getValue() )).forEach(System.out::println);
+
+
+        secondHighestElement();
+    }
+
+    public static void secondHighestElement(){
+        //* Write a program to find the second-highest element from an array.
+        // The array can contain duplicate elements. Solve it using Java 8 streams.
+
+        Integer[] nums ={ 1,7,3,6,1,3,5,5,4,9,11,23,54};
+
+       Optional<Integer> secondHighestNum =  Arrays.stream(nums).distinct().sorted(Comparator.reverseOrder()).skip(1).findFirst();
+
+       if(secondHighestNum.isPresent())
+           System.out.println("Second Highest is :" + secondHighestNum.get());
+       else
+           System.out.println("Second Highest is not present");
     }
 
 }
