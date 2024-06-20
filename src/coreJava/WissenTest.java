@@ -12,6 +12,7 @@ public class WissenTest {
 //        q1();
         Q1_a();
 
+
     }
 
     public static void  q1() throws ExecutionException, InterruptedException {
@@ -50,6 +51,11 @@ public class WissenTest {
 
 // Shutdown the thread pool after use
         ex.shutdown();
+    }
+
+    public  static void Q2(){
+        // Maximum Increasing subsequence length e.g. [1,20,200,2,3,5] – 3 [1,2,3]
+
     }
 
 }
