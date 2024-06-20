@@ -1,6 +1,7 @@
 package coreJava;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Java18 {
 
@@ -9,6 +10,10 @@ public class Java18 {
         System.out.println("hello Java 18");
         String s = "hello world";
         System.out.println(formatpatternswitch(s));
+
+        Optional<String> optional = Optional.ofNullable(null);
+        String result = optional.orElse("default");
+        System.out.println(result);
 
         // VAR Keyword
 
