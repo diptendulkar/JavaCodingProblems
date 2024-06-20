@@ -66,6 +66,7 @@ public class StreamExample {
         secondHighestElement();
         findDuplicateCount();
         findDuplicateOccurrences();
+        nonRepeatingElement();
     }
 
     public static void secondHighestElement() {
@@ -101,6 +102,19 @@ public class StreamExample {
 
         System.out.println("------- findDuplicateOccurrences  ---------");
         duplicates.forEach((c,count)-> System.out.println(c + " => " + count));
+    }
+
+    public static void nonRepeatingElement(){
+        String str = "swiss";
+
+        System.out.println("------- nonRepeatingElement  ---------");
+       Character ch = str.chars().mapToObj(c-> (char)c)
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                .entrySet().stream()
+                .filter(entry-> entry.getValue()==1)
+                .findFirst().orElse(null).getKey();
+
+        System.out.println("First Non repeating Char is: " +ch);
     }
 
 }
