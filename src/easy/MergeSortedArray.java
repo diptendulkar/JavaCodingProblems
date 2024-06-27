@@ -8,6 +8,8 @@ public class MergeSortedArray {
 
         int arr2[] = {2, 4, 6, 8};
 
+        merge(arr1,arr2);
+
 
         int arr3[] = mergeArrays(arr1, arr2);
 
@@ -46,5 +48,23 @@ public class MergeSortedArray {
         }
 
         return arr3;
+    }
+
+    public static void merge(int[] nums1, int[] nums2) {
+
+        int m = nums1.length;
+        int n = nums2.length;
+        int[] nums3 = new int[m+n];
+       // nums3 =nums1;
+
+        for (int i=0;i< nums1.length;i++)
+            nums3[i] = nums1[i];
+
+        for(int j=0, i=m; j<n; j++){
+            nums3[i] = nums2[j];
+            i++;
+        }
+        Arrays.sort(nums3);
+        System.out.println(" MERGE - " +Arrays.toString(nums3));
     }
 }
