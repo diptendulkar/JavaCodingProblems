@@ -69,6 +69,7 @@ public class StreamExample {
         nonRepeatingElement();
         uniqueElements();
         longestString();
+        charCount();
     }
 
     public static void secondHighestElement() {
@@ -154,6 +155,17 @@ public class StreamExample {
         } else {
             System.out.println("The array is empty.");
         }
+    }
+
+    public static void charCount(){
+        String str ="JavaProgramming";
+
+        Map<String, Long> map = Arrays.stream(str.split(""))
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+
+
+        System.out.println("------- find Char Occurrences  ---------\n"+ map);
+
     }
 
 }
