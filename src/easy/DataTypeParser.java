@@ -18,7 +18,7 @@ public class DataTypeParser {
         for(String str : input){
             if(str.contains("."))
                 doubleCounter++;
-            else if (str.matches("[0-9]"))
+            else if (str.matches("[0-9]*"))
                 intCounter++;
             else
                strCounter++;
