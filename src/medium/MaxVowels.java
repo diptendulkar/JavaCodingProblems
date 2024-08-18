@@ -5,6 +5,8 @@ public class MaxVowels {
         String s = "abciiidef";
         int k = 3;
         System.out.println(maxVowels(s, k));
+
+        countVowels(s);
     }
 
     public static int maxVowels(String s, int k) {
@@ -38,5 +40,17 @@ public class MaxVowels {
             }
         }
         return maxLen;
+    }
+
+    public static void countVowels(String str){
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                // Count vowel logic here
+                count++;
+            }
+        }
+        System.out.println(count);
     }
 }
